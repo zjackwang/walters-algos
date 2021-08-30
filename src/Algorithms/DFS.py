@@ -7,26 +7,23 @@ import tkinter as tk
 
 def find(source, destination, prev, visited, stack, grid):
     rows, columns = grid.rows, grid.columns
-    visited[source[0]][source[1]] = 1
     while len(stack) > 0:
         v = stack.pop()
         r, c = v[0], v[1] 
-        
+        visited[r][c] = 1
+        if [r, c] != source:
+            grid.update_color([[r, c]], "deep sky blue")    
+
         # Get unvisited neighboring tiles 
-        tiles = []
         for row, col in [[r-1, c], [r, c-1], [r, c+1], [r+1, c]]:
             if row >=0 and col >=0 and row < rows and col < columns:
                 if not visited[row][col]:
-                    visited[row][col] = 1 
-                    tiles.append([row, col])
                     prev[row][col] = v
                     if [row, col] == destination:
                         # print(f"found destination {destination} with {row, col}")
                         return 1
                     stack.append([row, col])
-        print(tiles)
-        # Color visited tiles 
-        grid.update_color(tiles, "deep sky blue")
+        # Color visited tile
     return 0
     
 
@@ -50,8 +47,8 @@ def run_DFS(grid):
 
         haspath = find(source, destination, prev, visited, s, grid)
         
-        print(f"Source: {source}\nDestination: {destination}")
-        print(haspath)
+        # print(f"Source: {source}\nDestination: {destination}")
+        # print(haspath)
         if haspath: 
             # backtrack for path 
             w = destination
