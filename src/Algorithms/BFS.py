@@ -1,5 +1,6 @@
 """
 BFS.py
+Implementation of breadth-first search
 """
 from collections import deque
 import tkinter as tk 
@@ -57,8 +58,3 @@ def run_BFS(grid):
             # paint bfs path 
             grid.update_color([w], "green")
             w = prev[w[0]][w[1]]
-
-
-
-
-    

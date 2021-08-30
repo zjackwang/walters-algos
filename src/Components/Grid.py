@@ -48,6 +48,7 @@ class Grid():
     """
     def update_color(self, tiles, new_color):
         for tile in tiles:
+            print(tile)
             self.canvas.itemconfigure(self.tiles[tile[0], tile[1]], fill=new_color)
             self.delay()
 
@@ -84,3 +85,4 @@ class Grid():
         self.redraw()
         self.tilesClicked = 0
         self.sourceSink = [[-1,-1]] * 2
+        
